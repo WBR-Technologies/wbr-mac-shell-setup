@@ -1,0 +1,6 @@
+# configs/zshrc.sh is a sourced fragment with no shebang; lint it as bash.
+shell=bash
+
+# Paths like "$(brew --prefix)/..." are resolved at runtime and cannot be
+# followed statically; this is expected for the sourced config files.
+disable=SC1091

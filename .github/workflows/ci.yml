@@ -1,0 +1,27 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  lint:
+    name: ShellCheck + syntax
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out
+        uses: actions/checkout@v4
+
+      - name: Bash syntax check
+        run: |
+          bash -n mac-shell-setup.sh
+          bash -n configs/zshrc.sh
+
+      - name: ShellCheck
+        run: |
+          shellcheck --version
+          shellcheck mac-shell-setup.sh configs/zshrc.sh
